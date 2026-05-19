@@ -56,7 +56,7 @@ export default function FormFields() {
           <input 
             type="text" 
             name="unit" 
-            placeholder="例: 油圧ショベル PC200-8" 
+            placeholder="例: CMX" 
             required 
             className={inputStyle("unit")}
           />
@@ -82,7 +82,7 @@ export default function FormFields() {
           <input 
             type="text" 
             name="title" 
-            placeholder="問題の概要（例：エンジンオーバーヒート）" 
+            placeholder="問題の概要（例：油漏れ）" 
             required 
             className={inputStyle("title")}
           />

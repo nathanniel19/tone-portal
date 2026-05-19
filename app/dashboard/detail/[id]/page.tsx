@@ -11,6 +11,8 @@ import {
   Trash2, Edit3, Save, X, ImageIcon, Printer, 
   AlertTriangle, CheckCircle2, Info 
 } from 'lucide-react';
+import { text } from 'stream/consumers';
+import { on } from 'events';
 
 export default function DetailProblemPage() {
   const params = useParams();
@@ -26,6 +28,7 @@ export default function DetailProblemPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handlePrint = useReactToPrint({
@@ -81,7 +84,7 @@ export default function DetailProblemPage() {
       await fetchData(); 
       setShowSuccessModal(true); 
     } catch (err: any) {
-      alert("❌ 更新に失敗しました: " + err.message);
+      alert("更新に失敗しました: " + err.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -103,7 +106,7 @@ export default function DetailProblemPage() {
       setShowDeleteModal(false);
       router.push('/dashboard');
     } catch (err: any) {
-      alert("❌ 削除に失敗しました: " + err.message);
+      alert("削除に失敗しました: " + err.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -159,11 +162,12 @@ export default function DetailProblemPage() {
           </button>
 
           <div className="flex gap-2">
-            <button onClick={() => handlePrint()} className="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-xl text-[10px] font-black hover:bg-black transition-all shadow-md uppercase">
-              <Printer size={14} /> PDF出力
-            </button>
+
             {!isEditing ? (
               <>
+                <button onClick={() => handlePrint()} className="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-xl text-[10px] font-black hover:bg-black transition-all shadow-md uppercase">
+                  <Printer size={14} /> PDF出力
+                </button>
                 <button onClick={() => setIsEditing(true)} className="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-[10px] font-black hover:bg-slate-50 uppercase">
                   <Edit3 size={14} /> 編集
                 </button>
@@ -172,9 +176,15 @@ export default function DetailProblemPage() {
                 </button>
               </>
             ) : (
-              <button onClick={() => setShowSaveModal(true)} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl text-[10px] font-black hover:bg-blue-700 uppercase">
-                <Save size={14} /> 変更を保存
-              </button>
+              <>
+                <button onClick={() => setShowCancelModal(true)} className="flex items-center gap-2 bg-white border border-red-100 text-red-500 px-4 py-2 rounded-xl text-[10px] font-black hover:bg-red-50 uppercase">
+                  <ArrowLeft size={14} /> 取り消す
+                </button>
+                <button onClick={() => setShowSaveModal(true)} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl text-[10px] font-black hover:bg-blue-700 uppercase">
+                  <Save size={14} /> 変更を保存
+                </button>
+              </>
+
             )}
           </div>
         </div>
@@ -215,21 +225,41 @@ export default function DetailProblemPage() {
               { label: "所在地", key: "location", icon: <MapPin size={16} /> }
             ].map((field) => (
               <div key={field.key} className="p-6 text-left">
-                <p className="text-[8px] font-bold text-slate-400 uppercase mb-2 tracking-widest">{field.label}</p>
-                <div className="flex items-center gap-2 text-[11px] font-black text-slate-800 uppercase">
-                  <span className="text-blue-500">{field.icon}</span> {data?.[field.key]}
-                </div>
+                {isEditing ? (
+                  <div>
+                    <div className="flex items-center gap-2 text-[11px] font-black text-slate-800 uppercase">
+                      <span className="text-blue-500">{field.icon}</span>
+                      <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">{field.label}</p>
+                    </div>
+                    <textarea
+                    className="w-full bg-slate-50 mt-2 border border-slate-100 rounded-l p-3 text-sm outline-none focus:border-blue-500 transition-all"
+                    rows={field.key === "remarks" ? 3 : 6}
+                    value={editData[field.key] || ""}
+                    onChange={(e) => setEditData({...editData, [field.key]: e.target.value})}
+                    />
+                  </div>
+                  
+                ) : (
+                  <div className="p-6 text-left">
+                    <p className="text-[8px] font-bold text-slate-400 uppercase mb-2 tracking-widest">{field.label}</p>
+                    <div className="flex items-center gap-2 text-[11px] font-black text-slate-800 uppercase">
+                      <span className="text-blue-500">{field.icon}</span> {data?.[field.key]}
+                    </div>
+                  </div>
+                )
+                }
+             
               </div>
             ))}
           </div>
 
-          {/* Bagian Teks (Complains, Symptoms, Actions, Remarks) */}
+          {/* Text (Complains, Symptoms, Actions, Remarks) */}
           <div className="p-8 md:p-10 space-y-8 bg-white">
             {[
               { label: "顧客の指摘事項 (クレーム)", key: "complains", icon: <AlertCircle size={16} className="text-orange-500" /> },
               { label: "技術的症状", key: "symptoms", icon: <ClipboardList size={16} className="text-orange-500" /> },
               { label: "実施した処置の詳細", key: "actions", icon: <FileText size={16} className="text-green-500" /> },
-              { label: "備考 (REMARKS)", key: "remarks", icon: <Info size={16} className="text-slate-500" /> }
+              { label: "備考", key: "remarks", icon: <Info size={16} className="text-slate-500" /> }
             ].map((section) => (
               <section key={section.key} className="text-left break-inside-avoid">
                 <h3 className="flex items-center gap-2 text-[10px] font-black text-slate-900 uppercase tracking-widest mb-3">
@@ -320,6 +350,21 @@ export default function DetailProblemPage() {
             <div className="grid grid-cols-2 gap-4">
               <button disabled={isSubmitting} onClick={() => setShowDeleteModal(false)} className="px-6 py-2.5 rounded-xl font-bold text-slate-400 bg-slate-100 hover:bg-slate-200">キャンセル</button>
               <button disabled={isSubmitting} onClick={handleDelete} className="px-6 py-2.5 rounded-xl font-bold text-white bg-red-600 hover:bg-red-700 shadow-lg">{isSubmitting ? <Loader2 className="animate-spin mx-auto" size={18} /> : "削除する"}</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showCancelModal && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 text-center">
+          <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm animate-in fade-in" ></div>
+          <div className="relative bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl animate-in zoom-in-95">
+            <div className="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mb-6 mx-auto"><AlertTriangle size={32} /></div>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">変更を取り消しますか？</h3>
+            <p className="text-slate-500 text-sm mb-8">変更した内容が取り消されます。</p>
+            <div className="grid grid-cols-2 gap-4">
+              <button onClick={() => setShowCancelModal(false)} className="px-6 py-2.5 rounded-xl font-bold text-slate-400 bg-slate-100 hover:bg-slate-200">キャンセル</button>
+              <button onClick={() => {setShowCancelModal(false); setIsEditing(false);}} className="px-6 py-2.5 rounded-xl font-bold text-white bg-red-600 hover:bg-red-700 shadow-lg">{isSubmitting ? <Loader2 className="animate-spin mx-auto" size={18} /> : "取り消す"}</button>
             </div>
           </div>
         </div>
