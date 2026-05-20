@@ -7,6 +7,7 @@ import { AlertTriangle } from 'lucide-react'
 interface UserAccount {
   username: string
   password: string
+  status: string
 }
 
 export default function LoginPage() {
@@ -24,7 +25,7 @@ export default function LoginPage() {
       // 1. Ambil data user dari tabel 'users' berdasarkan username yang diinput
       const { data, error } = await supabase
         .from('UserAccount')
-        .select('username, password')
+        .select('username, password, status')
         .eq('username', username)
         .maybeSingle() // Mengembalikan null jika user tidak ditemukan (tidak lgsg throw error)
 
@@ -36,8 +37,12 @@ export default function LoginPage() {
       if (data && data.password === password) {
         // Login OK
         localStorage.setItem('isLoggedIn', 'true')
-        localStorage.setItem('username', data.username) // Opsional: simpan username di session
-        router.push('/dashboard')
+
+        if (data.status === 'admin') {
+          router.push('/admin-dashboard')
+        } else {
+          router.push('/dashboard')
+        }
       } else {
         // Failed Login (Username data is not available)
         setShowModal(true)
@@ -45,6 +50,8 @@ export default function LoginPage() {
     } catch (err) {
       console.error('Login error:', err)
       alert('もう一度やり直してください。') 
+      setIsLoading(false)
+    } finally {
       setIsLoading(false)
     }
   }
@@ -76,7 +83,7 @@ return (
               required
               disabled={isLoading}
               placeholder="ユーザー名を入力" 
-              autoComplete='off'
+              autoComplete='new-username'
               className="w-full p-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white/10 transition-all disabled:opacity-50"
               onChange={(e) => setUsername(e.target.value)}
             />
