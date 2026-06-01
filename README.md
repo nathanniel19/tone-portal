@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tone Portal
+Tone Portal is a specialized digital logging and management platform designed to record, track, and analyze all maintenance, servicing, and troubleshooting activities for heavy machinery and field equipment. 
 
-## Getting Started
+This project aims to streamline the reporting workflow, replacing traditional paper logs with a reliable digital system to minimize equipment downtime and improve maintenance tracking efficiency.
 
-First, run the development server:
+## Key Features
+- Comprehensive Service Logging: Easily record daily maintenance activities, mechanical repairs, and valve/hydraulic system adjustments.
+- Reporting Dashboard
 
+## Tech Stack & Architecture
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Database & Authentication**: [Supabase](https://supabase.com/) (PostgreSQL)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 
+- **Deployment/Tools**: Netlify
+
+
+## Screenshots
+*(Adding visual evidence drastically improves your portfolio's impact)*
+
+| Dashboard Overview | Service Log Input Form |
+|---|---|
+| ![Dashboard](https://via.placeholder.com/400x250?text=Dashboard+Screenshot) | ![Log Form](https://via.placeholder.com/400x250?text=Log+Form+Screenshot) |
+
+### Installation Steps
+1. **Clone the repository:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   git clone [https://github.com/nathanniel19/tone-portal.git](https://github.com/nathanniel19/tone-portal.git)
+   cd tone-portal
