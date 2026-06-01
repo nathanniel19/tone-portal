@@ -11,13 +11,13 @@ export default function DashboardPage() {
       <main className="mx-auto max-w-7xl p-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           
-          {/* Sisi Kiri */}
+          {/* 左側 */}
           <div className="md:col-span-8 flex flex-col gap-8">
             <ActionButtons />
             <MainTable />
           </div>
 
-          {/* Sisi Kanan */}
+          {/* 右側 */}
           <div className="md:col-span-4">
             <SidebarTable />
           </div>

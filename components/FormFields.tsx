@@ -21,7 +21,7 @@ export default function FormFields() {
 
   return (
     <div className="flex flex-col gap-8 text-left">
-      {/* SECTION 1: 基本情報 (Informasi Dasar) */}
+      {/* 基本情報 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="flex flex-col">
           <label className={labelStyle}>
@@ -89,7 +89,7 @@ export default function FormFields() {
         </div>
       </div>
 
-      {/* SECTION 2: 詳細分析 (Analisis Detail) */}
+      {/* 分析 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-100">
         <div className="flex flex-col gap-1.5">
           <label className={labelStyle}>
@@ -127,7 +127,7 @@ export default function FormFields() {
           />
         </div>
 
-        {/* --- KOLOM REMARKS (Baru) --- */}
+        {/* 備考 */}
         <div className="flex flex-col gap-1.5 md:col-span-2 pt-4">
           <label className={labelStyle}>
             <Info size={14} className="text-slate-500" /> 備考

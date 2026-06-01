@@ -42,7 +42,7 @@ export default function SidebarTable() {
 
   return (
     <aside className="bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 flex flex-col h-full overflow-hidden">
-      {/* Header */}
+      {/* 上 */}
       <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
         <h3 className="font-bold text-slate-800 flex items-center gap-2 text-sm uppercase tracking-tight">
           <AlertTriangle size={18} className="text-amber-500" />
@@ -55,7 +55,7 @@ export default function SidebarTable() {
         </Link>
       </div>
       
-      {/* Content Area */}
+      {/* コンテンツ */}
       <div className="flex-1 overflow-y-auto">
         {loading ? (
           <div className="p-8 flex flex-col items-center justify-center min-h-[300px]">
@@ -103,7 +103,7 @@ export default function SidebarTable() {
               </Link>
             ))}
             
-            {/* Footer link to view all */}
+            {/* 下 */}
             <div className="p-4 bg-slate-50/30">
               <Link href="/dashboard/all-reports" className="block w-full py-2.5 rounded-lg border border-dashed border-slate-200 text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:border-blue-200 hover:text-blue-500 transition-all bg-white text-center">
                 すべての報告を表示

@@ -26,7 +26,7 @@ export default function ManualSearchPage() {
       <Navbar />
 
       <main className="max-w-6xl mx-auto p-6 md:p-10">
-        {/* Header Section */}
+        {/* 上 */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
           <div>
             <button 
@@ -40,7 +40,7 @@ export default function ManualSearchPage() {
             </h1>
           </div>
 
-          {/* Search Input */}
+          {/* 検索 */}
           <div className="relative max-w-md w-full">
             <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
             <input 
@@ -53,7 +53,7 @@ export default function ManualSearchPage() {
           </div>
         </div>
 
-        {/* Table Section */}
+        {/* 表 */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-left">
@@ -112,7 +112,7 @@ export default function ManualSearchPage() {
           </div>
         </div>
 
-        {/* Footer Info */}
+        {/* 下 */}
         <p className="mt-6 text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em]">
           検索結果: 全 {filteredData.length} 件
         </p>

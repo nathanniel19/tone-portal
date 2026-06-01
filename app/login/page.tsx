@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showModal, setShowModal] = useState(false)
-  const [isLoading, setIsLoading] = useState(false) // Ditambah biar user tau lagi proses login
+  const [isLoading, setIsLoading] = useState(false) 
   const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -22,20 +22,17 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      // 1. Ambil data user dari tabel 'users' berdasarkan username yang diinput
       const { data, error } = await supabase
         .from('UserAccount')
         .select('username, password, status')
         .eq('username', username)
-        .maybeSingle() // Mengembalikan null jika user tidak ditemukan (tidak lgsg throw error)
+        .maybeSingle() 
 
       if (error) {
         throw error
       }
 
-      // 2.Validation
       if (data && data.password === password) {
-        // Login OK
         localStorage.setItem('isLoggedIn', 'true')
 
         if (data.status === 'admin') {
@@ -44,7 +41,6 @@ export default function LoginPage() {
           router.push('/dashboard')
         }
       } else {
-        // Failed Login (Username data is not available)
         setShowModal(true)
       }
     } catch (err) {
@@ -59,13 +55,10 @@ export default function LoginPage() {
 return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 px-4">
       
-      {/* Card Login */}
       <div className="w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-2xl">
         
-        {/* Header Section */}
         <div className="text-center mb-8">
           <div className="inline-block p-3 rounded-full bg-blue-500/20 mb-4">
-            {/* Icon */}
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
@@ -74,7 +67,6 @@ return (
           <p className="text-blue-200 mt-2">データベースにアクセスするにはログインしてください</p>
         </div>
 
-        {/* Form Section */}
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label className="block text-sm font-medium text-blue-100 mb-1 ml-1">ユーザー名</label>
@@ -111,7 +103,6 @@ return (
           </button>
         </form>
 
-        {/* Footer */}
         <div className="mt-8 text-center">
           <p className="text-xs text-blue-300/60 uppercase tracking-widest">アカウントをお持ちでない場合は</p>
           <a href="#" className="text-blue-400 font-bold text-sm hover:underline" onClick={(e) => router.push('/register')}>
@@ -120,16 +111,13 @@ return (
         </div>
       </div>
 
-      {/* Error modal */}
       {showModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* Overlay */}
           <div 
             className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-300"
             onClick={() => setShowModal(false)}
           ></div>
           
-          {/* Box Modal */}
           <div className="relative bg-[#0f172a] border border-slate-700 rounded-2xl p-8 max-w-sm w-full shadow-2xl animate-in zoom-in-95 duration-200">
 
             <div className="flex flex-col items-center text-center">

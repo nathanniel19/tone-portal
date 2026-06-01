@@ -8,7 +8,7 @@ export default function MainTable() {
         担当ユニット一覧
       </div>
       
-      {/* Area Tabel */}
+      {/* 表 */}
       <div className="p-12 flex flex-col items-center justify-center bg-slate-50/50 min-h-[400px]">
         <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-slate-100">
            <ChevronRight size={32} className="text-slate-300" />

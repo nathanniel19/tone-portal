@@ -12,7 +12,7 @@ export default function RegisterPage() {
     const [newPassword, setNewPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     
-    // State baru untuk menampung error per field
+    // 
     const [errors, setErrors] = useState({
         username: '',
         password: '',
@@ -45,11 +45,11 @@ export default function RegisterPage() {
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        // Reset error terlebih dahulu setiap kali tombol ditekan
+        
         const newErrors = { username: '', password: '', confirmPassword: '' }
         let hasError = false
 
-        // Validasi field kosong
+        
         if (!newUsername.trim()) {
             newErrors.username = 'ユーザー名を入力してください'
             hasError = true
@@ -63,13 +63,13 @@ export default function RegisterPage() {
             hasError = true
         }
 
-        // Jika ada yang kosong, simpan error ke state dan hentikan proses
+        
         if (hasError) {
             setErrors(newErrors)
             return
         }
 
-        // Bersihkan error jika validasi kosong lolos
+        
         setErrors({ username: '', password: '', confirmPassword: '' })
 
         if (account.includes(newUsername)) {
@@ -108,7 +108,7 @@ export default function RegisterPage() {
                 <div className="w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-2xl">
                     <h2 className="text-2xl font-bold text-white mb-6 text-center">ユーザー登録</h2>
 
-                    {/* Form Register */}
+                    {/* フォーム */}
                     <form className="space-y-5" onSubmit={handleRegister}>
                         <div>
                             <label className="block text-sm font-medium text-blue-100 mb-1 ml-1">ユーザー名</label>
@@ -125,7 +125,7 @@ export default function RegisterPage() {
                                     if(errors.username) setErrors(prev => ({...prev, username: ''}))
                                 }}
                             />
-                            {/* Peringatan Kecil */}
+                            {/* 通知 */}
                             {errors.username && <p className="text-red-400 text-xs mt-1 ml-1 animate-pulse">{errors.username}</p>}
                         </div>
 
@@ -144,7 +144,7 @@ export default function RegisterPage() {
                                     if(errors.password) setErrors(prev => ({...prev, password: ''}))
                                 }}
                             />
-                            {/* Peringatan Kecil */}
+                            {/* 通知 */}
                             {errors.password && <p className="text-red-400 text-xs mt-1 ml-1 animate-pulse">{errors.password}</p>}
                         </div>
 
@@ -163,12 +163,12 @@ export default function RegisterPage() {
                                     if(errors.confirmPassword) setErrors(prev => ({...prev, confirmPassword: ''}))
                                 }}
                             />
-                            {/* Peringatan Kecil */}
+                            {/* 通知 */}
                             {errors.confirmPassword && <p className="text-red-400 text-xs mt-1 ml-1 animate-pulse">{errors.confirmPassword}</p>}
                         </div>
                         
 
-                        {/* Register Button */}
+                        {/*登録録 */}
                         <button 
                             type="submit"
                             className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-blue-900/20 transform transition active:scale-95 duration-200 disabled:opacity-50 disabled:scale-100"
@@ -176,7 +176,7 @@ export default function RegisterPage() {
                             登録
                         </button>
 
-                        {/* Back to Login */}
+                        {/* ログインへ */}
                         <button 
                             type="button"
                             className="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-slate-900/20 transform transition active:scale-95 duration-200 disabled:opacity-50 disabled:scale-100"
@@ -187,7 +187,7 @@ export default function RegisterPage() {
 
                     </form>
 
-                    {/* Success Modal */}
+                    {/* 成功 */}
                     {showSuccessModal && (
                     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
                         <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300"></div>
@@ -212,7 +212,7 @@ export default function RegisterPage() {
                     </div>
                     )}
 
-                    {/* Password Mismatch Modal */}
+                    {/* パスワード */}
                     {showErrorModal && (
                     <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
                         <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300"></div>
@@ -235,16 +235,14 @@ export default function RegisterPage() {
                     )}
 
 
-                    {/* Warning Modal */}
+                    {/*通知知 */}
                     {showModal && (
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                        {/* Overlay */}
                         <div 
                             className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-300"
                             onClick={() => setShowModal(false)}
                         ></div>
 
-                        {/* Box Modal */}
                         <div className="relative bg-[#0f172a]  rounded-2xl p-8 max-w-sm w-full shadow-2xl animate-in zoom-in-95 duration-200">
                             <div className="flex flex-col items-center text-center">
                                 <div className="w-16 h-16 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center mb-6 shadow-inner border border-red-500/20">

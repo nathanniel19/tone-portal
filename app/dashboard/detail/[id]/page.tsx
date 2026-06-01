@@ -190,7 +190,7 @@ export default function DetailProblemPage() {
         </div>
 
         <div ref={componentRef} className="print-area bg-white shadow-xl border border-slate-200 overflow-hidden md:rounded-[2rem]">
-          {/* Header Report */}
+          {/* 上 */}
           <div className="hidden print:flex items-center justify-between p-10 border-b-4 border-blue-600 mb-6 bg-slate-50/30">
             <div className="text-left">
               <h1 className="text-2xl font-black text-blue-600 leading-none">サービスレポート</h1>
@@ -217,7 +217,7 @@ export default function DetailProblemPage() {
             )}
           </div>
 
-          {/* Grid Info Dasar */}
+          {/* 基本情報 */}
           <div className="grid grid-cols-3 divide-x divide-slate-100 border-b border-slate-100 bg-white">
             {[
               { label: "顧客名", key: "customer_name", icon: <User size={16} /> },
@@ -253,7 +253,7 @@ export default function DetailProblemPage() {
             ))}
           </div>
 
-          {/* Text (Complains, Symptoms, Actions, Remarks) */}
+          {/* 情報 */}
           <div className="p-8 md:p-10 space-y-8 bg-white">
             {[
               { label: "顧客の指摘事項 (クレーム)", key: "complains", icon: <AlertCircle size={16} className="text-orange-500" /> },
@@ -285,7 +285,7 @@ export default function DetailProblemPage() {
             ))}
           </div>
 
-          {/* Bagian Foto */}
+          {/* 写真 */}
           {!isEditing && data?.image_url && (
             <div className="p-8 md:p-10 bg-white border-t border-slate-50 text-left break-inside-avoid">
               <p className="text-[9px] font-black text-slate-400 uppercase mb-6 tracking-widest flex items-center gap-2">
@@ -309,7 +309,7 @@ export default function DetailProblemPage() {
             </div>
           )}
 
-          {/* Signature (Hanya muncul saat print) */}
+          {/* サイン */}
           <div className="hidden print:grid grid-cols-2 gap-12 p-10 md:p-12 bg-white mt-10 border-t border-slate-100 break-inside-avoid">
             <div className="text-center">
               <p className="text-[9px] font-bold text-slate-400 uppercase mb-16 tracking-[0.2em]">お客様承認</p>
@@ -325,7 +325,7 @@ export default function DetailProblemPage() {
         </div>
       </div>
 
-      {/* Modals tetap sama (Delete, Save, Success, Zoom) */}
+      {/* ポップアップ */}
       {selectedImage && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-10 animate-in fade-in duration-300" onClick={() => setSelectedImage(null)}>
           <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"></div>

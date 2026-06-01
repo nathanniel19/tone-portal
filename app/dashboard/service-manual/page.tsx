@@ -37,7 +37,7 @@ export default function ServiceManualPage() {
       <Navbar />
 
       <main className="max-w-6xl mx-auto p-6 md:p-10">
-        {/* HEADER SECTION */}
+        {/* 上 */}
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
           <div className="text-left">
             <button 
@@ -52,7 +52,7 @@ export default function ServiceManualPage() {
             <p className="text-slate-400 text-xs font-bold mt-2 uppercase tracking-widest">技術ワークショップ資料</p>
           </div>
 
-          {/* SEARCH BOX */}
+          {/* 検索 */}
           <div className="relative max-w-md w-full group">
             <div className="absolute inset-0 bg-blue-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <div className="relative">
@@ -68,7 +68,7 @@ export default function ServiceManualPage() {
           </div>
         </div>
 
-        {/* TABLE CONTAINER */}
+        {/* 表 */}
         <div className="bg-white rounded-[2.5rem] border border-slate-200 shadow-2xl shadow-slate-200/50 overflow-hidden">
           <div className="overflow-x-auto text-left">
             <table className="w-full border-collapse">
@@ -140,10 +140,10 @@ export default function ServiceManualPage() {
           </div>
         </div>
 
-        {/* BOTTOM INFO */}
+        {/* 下 */}
         <div className="mt-10 flex items-center justify-between px-4">
           <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.5em]">
-            トーンポータル • サービスドキュメントシステム
+            利根ポータル • サービスドキュメントシステム
           </p>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>

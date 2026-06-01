@@ -19,7 +19,7 @@ export default function Navbar() {
         bg-gradient-to-r from-[#0a1931] via-[#10223e] to-[#0a1931] 
         px-8 py-4 text-white shadow-2xl border-b border-blue-500/20 backdrop-blur-md">
         
-        {/* Sisi Kiri: Logo dengan Icon Home */}
+        {/* 左側 */}
         <div 
           className="flex items-center gap-3 group cursor-pointer" 
           onClick={() => router.push('/dashboard')}
@@ -32,7 +32,7 @@ export default function Navbar() {
           </h1>
         </div>
 
-        {/* Sisi Kanan: Action Area */}
+        {/* 右側 */}
         <div className="flex items-center gap-6">
           <button 
             onClick={() => setShowModal(true)}
@@ -48,7 +48,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* --- CUSTOM LOGOUT MODAL --- */}
+      {/* ログアウト　*/}
       {showModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Overlay Gelap */}
